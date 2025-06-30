@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+
 import { loadMemes, saveMemes } from '../data_operations/dataOperations';
 
 enum MemeCategory {
@@ -36,13 +37,14 @@ router.post('/', (req, res) => {
     }
 
     memes[category].push(joke);
-    saveMemes(memesPath, memes);
+    saveMemes(memes, memesPath);
 
     res.status(201).json({
       code: 201,
       message: `Шутка добавлена!`,
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json({
       code: 500,
       message: 'Ошибка при сохранении мема.',
