@@ -1,7 +1,8 @@
-import express from "express";
-import cors from "cors";
-import weatherRouter from "./routes/weather";
-import dotenv from "dotenv";
+import express from 'express';
+import cors from 'cors';
+import weatherRouter from './routes/weather';
+import memesRouter from './routes/memes';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -12,11 +13,12 @@ app.use(cors());
 app.use(express.json());
 
 // Роуты
-app.use("/weather", weatherRouter);
+app.use('/weather', weatherRouter);
+app.use('/memes', memesRouter);
 
 // Тестовый корневой маршрут
-app.get("/", (_req, res) => {
-  res.send("Weather API is running");
+app.get('/', (_req, res) => {
+  res.send('Weather API is running');
 });
 
 app.listen(PORT, () => {
